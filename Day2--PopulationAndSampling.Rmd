@@ -1,0 +1,49 @@
+---
+title: "Day 2--Population parameters and sampling"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    css: ./style.css
+    toc: no
+    toc_float: yes
+    theme: cosmo
+editor_options:
+  chunk_output_type: console
+---
+  
+```{r global_options, include = FALSE}
+library(knitr,tidyverse)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+We will ignore everything above this
+
+
+
+1. In the space below create an `R` code chunk that saves the value 15 to a variable called `b`.
+
+
+2. Create a new code chunk below and type code that will calculate `b` to the 10th power.
+
+
+3. Now review the code chunk below. It lists the calories for the meals I ate yesterday and then adds up my calories for the day. In the empty code chunk write code that will save a list called `scores` with the values `25,65,33` and find the sum of those values. 
+
+```{r}
+calories <- c(550,920,1000)
+sum(calories)
+```
+
+```{r}
+# Delete this comment and write code that creates a list of scores: 25,65,33 and finds the sum of that list
+```
+
+4. Create two lists of numbers of the same size. Try adding the two lists, explain what is happening in the output. Try multiplying lists also. What happens if you try this but the lists aren't the same size?
+
+5. Type mpg into the console below. Describe the output.
+
+
+
+6. You can't see all of the output from the previous line of code and the data is not in your environment. To add the data to your environment, save mpg to some variable name, just like you did with 15 in problem 1
+
+7. Click on the new thing in your environment which has the mpg data, describe what happens
