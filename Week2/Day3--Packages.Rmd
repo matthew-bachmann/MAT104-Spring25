@@ -1,0 +1,101 @@
+---
+title: "Day3--Packages and Tables"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+  
+```{r global_options, include = FALSE}
+library(knitr)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+  
+## Today's Agenda
+- Packages
+- Tables
+
+---
+
+
++ If you run the code it works
++ Now try to knit.
+
+## Data frame basics
+
+
+### Activities 
+
+First thing we will do is install a new package. In the CONSOLE, run the appropriate code to install the package `fivethirtyeight`.
+
+1. Load the `fivethirtyeight` package (which you should have just installed), locally
+
+```{r}
+# code to load the package
+
+```
+
+2. Inside this package is a dataset called `biopics` full of data about biographical picture movies. Choose a an appropriate name and save this data frame to your local environment.
+```{r}
+# saving data frame to environment
+
+```
+
+
+3. Try using the function `head()` on the data set. What does the `head()` function do?
+
+```{r}
+# See head() of biopic data
+
+```
+
+Type your answer in words here or write your answer as a comment in the code chunk
+
+4. To read more about a particular data set you can use the help function. Run the code chunk below and explain what the column `box_office` in the data frame represents.
+
+```{r}
+# putting a ? at the beginning tells you more about the data
+?biopics
+```
+
+Type your answer in words here or write your answer as a comment in the code chunk
+
+5. How many movies are represented in the data frame? How many characteristics of each movie are recorded?
+
+Type your answer to the question here
+
+6. Classify the following variables as quantitative (discrete or continuous) or qualitative (nominal or ordinal).
+
++ `number_of_subjects`:
++ `type_of_subjects`:
++ `box_office`: 
+
+7. Save the `number_of_subjects` column to your local environment.
+
+```{r}
+# saving number_of_subjects data locally
+
+```
+
+8. To see how many times each number of subject appears we can use the `table()` function.
+
+```{r}
+# use table() on the local variable you made in 7. 
+
+```
+
+9. Finally, try to run `barplot(table())` on the variable you made in 7.
+
+```{r}
+# use barplot(table()) on the local variable you made in 7. 
+
+```
+
