@@ -1,0 +1,66 @@
+---
+title: "Day4--Quantiles and Boxplots"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+  
+```{r global_options, include = FALSE}
+library(knitr)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+  
+## Today's Agenda
+- Quantiles
+- Logical Operators
+
+---
+
+
+
+
+### Activities 
+
+1. Find the a value of body mass for which $30 \%$ of penguins are below that mass.
+
+```{r}
+
+```
+
+2. Find the a value of body mass for which $60 \%$ of penguins are above that mass.
+
+```{r}
+
+```
+
+
+3. Make a box plot for flipper length.
+
+```{r}
+
+```
+
+
+4. Make a boxplot for body mass where each island is separated into it's own boxplot.
+
+```{r}
+
+```
+
+
+5. How many penguins are in the study are not from Torgesen?
+
+
+
+6. How many penguins in the study have a flipper length less than $190$ and a body mass greater than $4700$?
+
+
