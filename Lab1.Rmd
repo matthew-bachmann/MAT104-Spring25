@@ -1,0 +1,182 @@
+---
+title: "Lab 1 - Measures of Dispersion"
+author: Student 1 Name, Student 2 Name
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    css: ./style.css
+    toc: no
+    toc_float: no
+    theme: cosmo
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+You may work on this in groups of two. When finished, knit to PDF and submit to Moodle. You should both submit identical PDFs.
+
+## Measures of Disperison
+
+### Mean absolute deviation
+
++ When we talk about the **dispersion** of a data set we are concerned with how spread out it is.
++ both range and IQR are coarse measurements of dispersion. 
++ Instead, we want a measurement that tells us how spread out **all** the data is.
++ one idea is to measure how far each point is from the center of the data. 
+
++ Suppose there is a data set with $n$ data points ($n$ can be any whole number). 
++ So, our data set has values $X_1,X_2,X_3, \dots, X_n$
++ For every point $X_i$ in our data set, we will measure how far it is (how much it **deviates**) from the mean:
+
+$$ \bar{X}-X_i $$
+
++ If a number is 3 units bigger than the mean, the deviation will be $-3$. 
++ We only care *how far* the point is, not if it's bigger or smaller, so we take the **absolute** value
+
+$$| \bar{X}-X_i |$$
+
+Finally, we take the average of all the **absolute deviations** from the **mean**. (hence, the name mean absolute deviation):
+
+$$ \displaystyle \frac{\sum_{i=1}^n | \bar{X}-X_i |}{n}$$
+
+Let's start with a small data set. Run the code below to load the data set:
+
+```{r}
+example_data <- c(2, 0, 6, 28, 19, 65)
+```
+
+1. Write code to find the mean of the `example_data` and save it in a local variable called `mean_example_data`. 
+
+```{r}
+# insert code here
+```
+
+2. Fill in the table below by deleting the question marks and inserting the appropriate values: 
+
+
+| data index $i$ | value $X_i$ | deviation from mean $\bar{X}-X_i$ | absolute deviation  $|\bar{X}-X_i|$|
+| :---:|:---:|:---------:|:--------:|
+| 1          |  2    |        ?            |          ?          |
+| 2          |  0    |        ?            |          ?          |
+| 3          |  6    |        ?            |          ?          |
+| 4          |  28   |        ?            |          ?          |
+| 5          |  19   |        ?            |          ?          |
+| 6          |  65   |        ?            |          ?          |
+
+
+3. Now write code to compute the **mean absolute deviation** (you will need to use the values that you found in the table)
+
+```{r}
+# insert code here
+```
+
+### **Median Absolute Deviation**.
+
++ The **median absolute deviation** is the average absolute deviation from the median rather than the mean.
+
+Now for the example data, we will compute the median absolute deviation using more help from `R`. The code below finds the median absolute deviation in a single line of code:
+
+```{r}
+mean(abs(median(example_data)- example_data))
+```
+
+4. Does the data seem to be closer to the mean or the median on average?
+
+ANSWER HERE
+
+
+### **yrbss data**
+
+5. Load the `openintro` package. Also save the `yrbss` data from the open intro package to your local environment as `teen_data`.
+
+```{r}
+#insert code here
+```
+
+6. Filter the `teen_data` so that you can focus in on the ninth graders. Save the data set with only ninth grade data as `ninth_graders`.
+
+```{r}
+#insert code here
+```
+
+7. Find the mean weight of ninth graders.
+
+```{r}
+#insert code here
+```
+
+8. Find the median weight of ninth graders.
+
+```{r}
+#insert code here
+```
+
+9. Based on the mean and median, can you predict if the distribution of data is symmetric, right skewed, or left skewed? Justify your reasoning.
+
+ANSWER HERE
+
+10. Find the mean absolute deviation for the weight of ninth graders.
+
+```{r}
+#insert code here
+```
+
+11. Find the median absolute deviation for the weight of ninth graders.
+
+```{r}
+#insert code here
+```
+
+
+12. Suppose that the schools in the data set added vending machines with unhealthy snacks. This caused the top $10 \%$ heaviest ninth graders to gain more weight, however, the other $90 \%$ of students stayed the same weight. How would this affect the mean and median?
+
+ANSWER HERE
+
+
+13. Create two histograms for the weights of ninth graders, one with a bin width of $2.2$ and another with a bin width of $10$.  
+
+```{r}
+#insert code here
+```
+
+14. Which histogram is better for displaying the weight data? Justify your answer with at least two reasons (think about the units).
+
+ANSWER HERE
+
+15. Make a box plot for the weight of ninth graders.  
+
+```{r}
+#insert code here
+```
+
+16. Are there any outliers for the weight of ninth graders? How does support or refute your conclusions about the shape of the distribution?
+
+
+ANSWER HERE
+
+
+17. Make a single graph that has one boxplot for each grade of the `yrbss`teen data.
+
+```{r}
+#insert code here
+```
+
+
+18. Explain some reasons why it makes sense for fewer outliers to be underweight? (Think about how far the whisker extends and how much someone would need to weigh to be considered an outlier.)
+
+19. Plot a scatter plot with the weight data on the $x$-axis and the height data on the $y$-axis.
+
+20. List at least three things that a data scientist may want to know about the data that you can see in the scatterplot. 
+
+ANSWER HERE
+
+21. Reflection: In a paragraph, explain the different features of a boxplot vs. a histogram and why you may choose one of another.
+
+
+
+
