@@ -1,0 +1,65 @@
+---
+title: "Day 14 Notes: Central Limit Theorem for Means"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+------------------------------------------------------------------------
+
+## Today's Agenda
+
+- Law of Large Numbers
+- Central Limit Theorem 
+
+------------------------------------------------------------------------
+
+## Law of Large Numbers
+
+- Suppose you are trying to predict the proportion of Davidson students that plan to vote for Kamala Harris. 
+- There is some true proportion (we don't know it)
+
+- If we sample $400$ students, what is the expected value for the proportion of students voting for Harris?
+- There are only two reasonable expectations to have:
+  + we expect the sample proportion to be close to the true proportion
+  + we expect the sample proportion to not be exactly equal to the true proportion
+- how much are we likely to be wrong by? This is called the **standard error**
+- the **standard error** is a measurement of how well we are able to predict some value. 
+  + a large standard error means we cannot predict the value well
+  + a small standard error means we can predict the value with high accuracy
+
+- when we increase the sample size:
+  + predicting the **number of people in the sample** voting for Harris gets harder (standard error for the number of people increases)
+  + predicting the **percentage of people in our sample** voting for Harris gets easier (standard error for the proportion of people decreases)
+  
+```{r}
+candidates <- c("H","T")
+table(sample(candidates, 100, replace = TRUE))
+```
+
+## Central Limit Theorem
+
++ Let's investigate what happens to the sampling distribution of the sample mean as the sample size increases
+
+```{r}
+die <- c(1:6)
+hist(die,breaks=20, prob=TRUE)
+# what's the expected value of the mean of a die = 3.5
+exp <- data.frame(means = replicate(100000,mean(sample(die,10,replace=TRUE))))
+hist(exp$means,prob=TRUE,breaks=50)
+```
+
+
