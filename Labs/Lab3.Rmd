@@ -1,0 +1,273 @@
+---
+title: "Lab 2 - Sampling Distribution"
+author: Student 1 Name, Student 2 Name
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    css: ./style.css
+    toc: no
+    toc_float: no
+    theme: cosmo
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+------------------------------------------------------------------------
+
+## A first step and note
+
++ When you ask R to do a random sample (or any other random function) it will use some seemingly random number to determine what your random values will be.
++ If you and your partner each run the function `rnorm(5)` you will almost certainly get 5 different numbers.
++ It is great that we all get different numbers since this is consistent with our idea of randomness. However, it makes it difficult to replicate results.
++ To gain some control over the randomness, we can all set our seed to be the same seed and all the randomness will grow from the same starting place.
+
+Run the code below to set the seed for the random number generator for R.
+
+```{r}
+set.seed(534)
+```
+
+Now if you run `rnorm(5)` you should get the numbers: 
+`-0.5430892  0.8137322 -0.4268342 -0.2927309 -0.6854149`
+
++ each time you run `rnorm()`, the seed grows. So, it is possible to get off track with your partner and now you are getting different results.
++ to fix this, you can go to the top next to the green C and choose `Run All` which will rerun all the code in your document starting from the top.
++ This should get you back in line with each other
+
+
+---
+
+## Quantiles
+
++ We've learned that `pnorm()` give you the area under the standard normal curve to the left of some value
++ eg. To find the area to the left of $1$ on the standard normal curve run the code 
+```{r}
+pnorm(1)
+```
+
++ Which yields an area of $.8413$. 
+
++ If, on the other hand, you wanted to go backwards you would use the function `qnorm()`
++ So, `qnorm(.8413)` should output $1$ (or very close to $1$).
++ The qnorm function takes in a percentage and outputs the value on the normal curve that has that much area to the left of it.
++ The pnorm function takes in the value and tells you the percentage to the left of it.
++ p for probability and q for quantile
+
+1. Find the value at the 80th percentile on the standard normal curve.
+
+```{r}
+#insert code here 
+```
+
+2. Find the value at the 97.5th percentile.
+
+```{r}
+#insert code here 
+```
+
+3. The middle $95 \%$ of the area under the standard normal curve is between what two values?
+
+```{r}
+#insert code here 
+```
+
+## The Population
+
+For this lab our population will be the data set of all $50000$ diamonds. We will be working with the `diamonds` data set.
+
+4.  Save the `diamonds` data set locally (the package containing this data set is already loaded).
+
+```{r}
+#insert code here 
+```
+
+5.  How many diamonds are represented in the data set?
+
+6.  Plot a histogram of the price of the diamonds with a bin width of $500$.
+
+```{r}
+# insert code here
+```
+
+7.  Describe the shape of the distribution of diamond prices.
+
+8.  Find the mean and standard deviation for the price of a diamond using the functions `mean()` and `sd()`.
+
+```{r}
+#insert code here 
+```
+
++ Technically, since we are assuming this is the **entire** population, the `sd()` function you used in question 8 is incorrect. 
++ It is much, much more common to work with a sample than with a population; so, by default, `R` finds the sample standard deviation.
++ Since `R` always assumes you are working with the sample, so it uses the following formula:
+
+$$s = \sqrt{\frac{\sum (X_i - \bar{X})^2}{n-1}}$$
+
+when we actually should be using the formula for the population standard deviation:
+
+$$\sigma = \sqrt{\frac{\sum (X_i - \mu)^2}{N}}$$
+
+9.  Compute the standard deviation using the correct formula below:
+
+```{r}
+#insert code here 
+```
+
+
+10.  What is the difference between the two standard deviations?
+
+
+
+When the population is this large, the difference is so tiny that we shouldn't really bother with it. However, since we went through the trouble of computing the correct population standard deviation, let's record the correct value below.
+
+11.  We just computed **population parameters** for this data set, record their values below:
+
+$$\mu = $$
+
+$$\sigma = $$
+
+------------------------------------------------------------------------
+
+## A small retailer
+
+Now we will begin to explore what it is like to guess the **population parameters** from **sample statistics**. In the previous section we found the population mean and population standard deviation.
+
+A small diamond retailer is trying to get a sense for the distribution of diamond prices in New York City in 2023 (that is, they want to know as much of the information from the previous section as possible).
+
+The retailer does not have access to data for all the diamonds and takes a simple random sample of $1000$ diamonds (only about $2 \%$ of the total population). Then we would need to guess the population mean and standard deviation from our sample. This is the their task: the retailer needs to guess $\mu$ and $\sigma$ from their sample as best they can.
+
+First, the retailer needs a sample:
+
+12.  To use the `sample()` function you only have to input two arguments: the data you want to sample from and the size of the sample. The other arguments are optional and we don't need them. Write code to sample $1000$ diamond **prices** from the `diamonds` data and save the result locally.
+
+```{r}
+# insert code here
+```
+
+13. Recall that when you use the `mean()` and `sd()` functions in `R` they are assuming you are working with a sample and trying to estimate the population parameters. Use these function to estimate the population parameters. Note that we know the true values from exercise 11, are the estimates any good?
+
+```{r}
+# insert code here
+```
+
+------------------------------------------------------------------------
+
+## Sample Sizes
+
+The diamond retailer starts to wonder, how much faith should they put in their estimates? They only have a sample size of $1000$ out of a population of $50000$. How good is that? The answer is unclear.
+
+Their instincts tell them that the sample size isn't big enough to be representative of the entire population. Perhaps we can agree that $1000$ is too small, but how big of a sample is big enough, $5000$? $10000$? $25000$? Furthermore, what if this is all the time they have to collect a sample. What can they do with this small sample?
+
+14. Suppose you are a political scientist trying to determine the proportion of Americans that support a new bill that has just been passed. You need to poll a sample of Americans to get their opinions. Of course, a bigger sample size will provide a better estimate of the true proportion of support. What are some of the real-world limitations of collecting a large sample size in this situation?
+
+Since we can't just take any sample size we want, we need to appeal to other strategies. One of our strongest tools (some may say our only tool) for determining the truth of the world is through experimentation. For example, if you were suspicious that a coin was not fair, meaning that the coin is rigged so that either heads or tails shows up more often than the other one, what would you do to test your theory? You would probably flip the coin over and over and collect some data. You would run an experiment and review your results.
+
+------------------------------------------------------------------------
+
+## Simulation
+
+To run experiments in `R` we can use the `replicate()` function which takes two arguments. The first is how many times you want to repeat the experiment and the second is the experiment. For example, we can run an experiment to find the sum of $10$ randomly selected numbers between $1$ and $100$ as so:
+
+```{r}
+one_hundred <- 1:100
+sum(sample(one_hundred,10))
+```
+
+Then we can repeat the experiment $20,000$ times with `replicate()` and save the results as a data frame called `sample_sums` with a variable called `sample_sum`:
+
+```{r}
+sample_sums <- data.frame(sample_sum = replicate(20000,sum(sample(1:100,10))))
+```
+
+This produces a vector of $20000$ different sums of $10$ random numbers. Finally, let's compute the average based on our $20000$ experiments with:
+
+```{r}
+mean(sample_sums$sample_sum)
+```
+
+So, it seems like the sum of $10$ randomly selected numbers will be close to $505$. Computers being efficient at tedious mundane tasks has allowed us to repeat a simple experiment $20,000$ times! This allows us to see patterns in choosing $10$ random numbers and computing their sum. Sure, sometimes we get really unlucky with a sample and the sum is way higher than $505$, but we can begin to see just how rare that is once we've repeated the process so many times. This process is called a **simulation**. Simulations are a very strong tool in statistics and we will encounter them often.
+
+------------------------------------------------------------------------
+
+### Simulating the diamond data
+
+15. Write code to take the mean price of a sample of $1000$ diamond prices $30000$ times. Save the vector of $30000$ sample means as a data frame called `sample_means` with a variable called `sample_mean`.
+
+```{r}
+# insert code here
+```
+
+16. Find the mean of the sample means.
+
+```{r}
+# insert code here
+```
+
+17. Plot a histogram of the sample means.
+
+```{r}
+# insert code here
+```
+
+The histogram you just plotted is called the **sampling distribution** of the sample mean.
+
+18. Describe the shape of the sampling distribution. What value is at the center of the bell-shaped curve?
+
+19. Find the difference between the mean of the sample means and the population mean recorded in exercise 8.
+
+20. What is the maximum and minimum sample mean from your simulation data?
+
+```{r}
+# insert code here
+```
+
+Even though we took a relatively small sample size, the distribution of sample means can still reveal information about the population mean.
+
+### Simulating the yrbss data.
+
+Now run a similar experiment for the `yrbss` weight data.
+
+21. Write code to take the mean of a sample of $500$ weights $30000$ times. Save the vector of $30000$ sample means as a data frame called `sample_means2` with a variable called `sample_mean`.
+
+22. Find the mean of the sample means.
+
+```{r}
+# insert code here
+```
+
+23. Plot a histogram of the sample means.
+
+```{r}
+# insert code here
+```
+
+24. What similarities do you see between the the two sampling distributions (from the diamond data exercise 17 and the yrbss data exercise 23)?
+
+The sampling distribution will be a crucial tool for us going forward because of its predictable shape. We will often take advantage of the fact that we have an idea of what the sampling distribution looks like.
+
+## Standard Error
+
+You may have noticed that the mean of the sample means in your simulations are pretty good at predicting the population means. What about the standard deviation?
+
+25. Find the standard deviation of the sample means for both simulations.
+
+```{r}
+# insert code here
+```
+
+23. How do the standard deviations of the sample mean compare to the population standard deviation? Are they close together? Is one smaller/larger than the other?
+
+The standard deviation of the the sample mean is called the **standard error**. We will explore this more soon.
+
+------------------------------------------------------------------------
+
+## Reflection
+
+24. In exercise 17 and 23 we produced histograms that describe the sampling distribution of the sample mean. How would you explain these graphs to someone with no experience with coding or stats? You should answer this question in a short paragraph as if you are explaining what you did in this lab to one of your friends that isn't in this class (you can assume that they know what a mean and a sample is, but don't assume they know about standard deviation, histogram, distributions, etc.).
+
