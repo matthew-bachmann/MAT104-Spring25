@@ -1,0 +1,44 @@
+---
+title: "Day 15--Intro to Confidence Intervals"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+  
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+
+1. (Using a table) A population of early career professionals has an average salary of $\$50,000$ with a standard deviation of $\$15,000$. Find a range of salaries for which the average salary of a sample of $200$ professionals will be in the range with $95 \%$ probability.
+
+2. (Using a table) A population has mean $\mu = 143$ and standard deviation $\sigma = 15$. Describe the sampling distribution for a sample of size $150$. Draw a picture of the sampling distribution. Label the area corresponding to the probability of a sample mean greater than $144$. Find the probability.
+
+## CLT for Proportions
+
+$$ \hat{p} \sim N\left(p,\sqrt{\frac{p(1-p)}{n}}\right)$$
+
+
+3. (Using a table) The true proportion of red skittles made at the factory is $35 \%$. From a sample of $100$ skittles, what is the probability that the proportion of skittles will be greater than $40 \%$?
+
+
+4. (Using a table) The true proportion of red skittles made at the factory is $35 \%$. From a sample of $100$ skittles, you are really hoping to get an unusually large number of red skittles. What proportion of red skittles would be in the top $1 \%$ of samples.
+
+5. Find the middle $95 \%$
+
+
+
+## Population Parameters aren't known
+
+$$ \mu - 1.96 \cdot SE \leq \bar{X} \leq \mu + 1.96 \cdot SE $$
+
