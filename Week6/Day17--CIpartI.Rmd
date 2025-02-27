@@ -1,0 +1,56 @@
+---
+title: "Day 16--Confidence Intervals I"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+  
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+
+## Population Parameters aren't known
+
+$$ \mu - 1.96 \cdot SE \leq \bar{X} \leq \mu + 1.96 \cdot SE $$
+
+$$ \bar{X} - 1.96 \cdot SE \leq \mu \leq \bar{X} + 1.96 \cdot SE $$
+
++ This is for a 95% confidence level, where $\alpha=.05$. You can use any confidence level and only you will just need to change the 1.96 part.
++ The stuff that you add to either side is called the error bound. 
+
+$$ \bar{X} - EB \leq \mu \leq \bar{X} + EB $$
+
+1. Suppose a population unkown population mean and population standard deviation $2.5$. A sample of $450$ observations has a sample mean of $\bar{x}=62$. Find a $95 \%$ confidence interval.
+
+```{r}
+
+```
+
+2. What are the $z$-scores corresponding to a $70 \%$ confidence level?
+
+```{r}
+
+```
+
+3. Consider a population that is approximately normally distributed with unknown population mean and unknown population standard deviation. A sample of $450$ observations has a sample mean of $\bar{X}=62$ and standard deviation of $52$. Find a $95 \%$ confidence interval for the population mean. 
+
+```{r}
+
+```
+
+4. Suppose scores on exams in statistics are normally distributed with an unknown population mean and a population standard deviation of $3$ points. A random sample of $36$ scores is taken with an mean score of $72$. Find a $98 \%$ confidence interval for the mean exam score of the population.
+
+```{r}
+
+```
