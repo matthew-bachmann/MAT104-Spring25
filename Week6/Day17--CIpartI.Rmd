@@ -1,5 +1,5 @@
 ---
-title: "Day 16--Confidence Intervals I"
+title: "Day 17--Confidence Intervals I"
 output:
   html_document:
     css: ./style.css
@@ -31,7 +31,7 @@ $$ \bar{X} - 1.96 \cdot SE \leq \mu \leq \bar{X} + 1.96 \cdot SE $$
 
 $$ \bar{X} - EB \leq \mu \leq \bar{X} + EB $$
 
-1. Suppose a population unkown population mean and population standard deviation $2.5$. A sample of $450$ observations has a sample mean of $\bar{x}=62$. Find a $95 \%$ confidence interval.
+1. Suppose a population unknown population mean and population standard deviation $2.5$. A sample of $450$ observations has a sample mean of $\bar{x}=62$. Find a $95 \%$ confidence interval.
 
 ```{r}
 
@@ -43,13 +43,19 @@ $$ \bar{X} - EB \leq \mu \leq \bar{X} + EB $$
 
 ```
 
-3. Consider a population that is approximately normally distributed with unknown population mean and unknown population standard deviation. A sample of $450$ observations has a sample mean of $\bar{X}=62$ and standard deviation of $52$. Find a $95 \%$ confidence interval for the population mean. 
+3. A study is conducted to analyze internet privacy for teens. A group of $50$ teens is randomly sampled and $17$ report clicking on links from unknown email addresses. Construct a $90 \%$ confidence interval for the true proportion of teens that click on links from unknown email addresses.
 
 ```{r}
 
 ```
 
 4. Suppose scores on exams in statistics are normally distributed with an unknown population mean and a population standard deviation of $3$ points. A random sample of $36$ scores is taken with an mean score of $72$. Find a $98 \%$ confidence interval for the mean exam score of the population.
+
+```{r}
+
+```
+
+5. Political experts claim that only $35 \%$ of registered voters vote in local elections. A recent political poll (assume they are using methods that ensure independence) asks $1000$ registered voters if they plan to vote in their next local election. The poll finds that $840$ registered voters will vote in the next election. 
 
 ```{r}
 
