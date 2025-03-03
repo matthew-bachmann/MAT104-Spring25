@@ -47,7 +47,7 @@ $$T\text{-score} = \frac{\text{observation}-\text{expected}}{s}$$
 
 ![Image source: OpenIntro](t-dist.png)
 
-6. Consider a population that is approximately normally distributed with unknown population mean and unknown population standard deviation. A simple random sample of $20$ observations has a sample mean of $\bar{X}=62$ and standard deviation of $52$. Find a $95 \%$ confidence interval for the population mean. 
+6. Consider a population that is approximately normally distributed with unknown population mean and unknown population standard deviation. A simple random sample of $16$ observations has a sample mean of $\bar{X}=62$ and standard deviation of $52$. Find a $95 \%$ confidence interval for the population mean. 
 
 ```{r}
 # Still need normality and independence conditions.
