@@ -1,0 +1,38 @@
+---
+title: "Day25 - Practice"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+library(openintro)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+-------------------------------------------------------------
+
+1. It is believed that $40 \%$ of people pass their driving test on the first attempt. Suppose you think the percentage is greater than $40 \%$. So, you perform a hypothesis test and sample $100$ people. Of the sampled people, $47$ reply that they passed on their first attempt. Set up a hypothesis test and make a conclusion with a $10 \%$ significance level.
+
+$H_0:$
+
+$H_A:$
+
+```{r}
+
+```
+
+2. If the true proportion of people pass their driving test on the first attempt is $52 \%$, what is the power of your test at detecting this difference?
+
+3. Cadmium, a heavy metal, is toxic to animals. Mushrooms, however, are able to absorb and accumulate cadmium at high concentrations. The Czech and Slovak governments have set a safety limit for cadmium in dry vegetables at $0.5$ part per million (ppm). A hypothesis test is to be performed to decide whether the mean cadmium level in mushrooms is greater than the government’s recommended limit. It is known that the population is normally distributed and has standard deviation $0.37$ ppm of cadmium. A sample of $12$ mushrooms has a mean cadmium level of $0.55$ ppm a significance level of $5 \%$. Does the data provide statistically significant evidence that the mean cadmium levels is higher than the goverment's recommend limit?
+
+4. If the true average is $0.8$ ppm, what is the power of the test at detecting this?
