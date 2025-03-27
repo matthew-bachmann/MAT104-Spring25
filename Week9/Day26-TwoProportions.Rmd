@@ -1,0 +1,40 @@
+---
+title: "Day26 - Two Proportions"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+library(openintro)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+-------------------------------------------------------------
+
+$$\hat{p_1} - \hat{p_1} \sim N \left( p_1- p_2, \sqrt{ \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}} \right) $$
+
+1. A survey asked $827$ randomly sampled registered voters in California “Do you support? Or do you oppose? Drilling for oil and natural gas off the Coast of California? Or do you not know enough to say?” Below is the distribution of responses, separated based on whether or not the respondent graduated from college. Test whether the data provide statistically significant evidence that the proportion of college grads and non-college grads that don't have an opinion on the matter are different at a $5\%$ significance levels. 
+
+| | College Grad | Not College Grad |
+|:--:|:--:|:--:|
+|Support | $154$ | $132$ | 
+|Oppose | $180$ | $126$ |
+|Don't know | $104$ | $131$ |
+|Total | $438$ | $389$ |
+
+2. Now calculate a $95 \%$ confidence interval for the difference between the proportion of college grads and non-college grads that don't have an opinion on the matter.
+
+3. According to a report on sleep deprivation by the Centers for Disease Control and Prevention, the proportion of California residents who reported insufficient rest or sleep during each of the preceding $30$ days is $8.0 \%$, while this proportion is $8.8 \%$ for Oregon residents. These data are based on simple random samples of $11,545$ California and $4,691$ Oregon residents. Determine, at a $10 \%$ significance level, whether the data provide evidence that the proportions are different.
+
+
+4. Calculate a $95 \%$ confidence interval for the difference between the proportions of Californians and Oregonians who are sleep deprived and interpret it in context of the data.
