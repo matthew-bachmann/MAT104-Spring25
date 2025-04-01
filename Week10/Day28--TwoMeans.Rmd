@@ -1,0 +1,51 @@
+---
+title: "Day28--Difference in means"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+  
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+library(openintro)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+  
+## Today's Agenda
+
+- Two Means
+- Two Proportions
+
+---
+
+## Difference of means
+
+$$\bar{X_1} - \bar{X_2} \sim N \left( \mu_1-\mu_2, \sqrt{\frac{(\sigma_1)^2}{n_1} + \frac{(\sigma_2)^2}{n_2}} \right) $$
+
+
+1. A popcorn company uses two machines to add butter to their microwave popcorn bags. Both machines are supposed to add $5$g of butter to each bag. One machine is newer and has a standard deviation of $1$g of butter. The older machine is less consistent and dispenses butter with a standard deviation of $1.2$g. A quality control employee at the company wants to test that the machines are dispensing the same amount of butter on average. They decide to do a simple random sample of $20$ bags from each machine and obtain sample mean $5.1$ and standard deviation $.9$ from the new machine and mean $4.6$ and standard deviation $1.1$ from the old machine. Does this provide statistically significant evidence that the two machines are dispensing a different average amount of butter?
+
+
+
+When the population standard deviation is unknown for both groups, we use the sample standard deviation and the $t$-distribution with degrees of freedom equal to the smaller of $n_1-1$ and $n_2-1$.
+
+2. A scientific experiment measured change in blood pressure due to a medication in a control and treatment group. In their measurements negative data indicates a decrease in blood pressure. The control group had an average decrease of $-1.4$ and the treatment group had an average decrease of $-4$. With $9$ people in each group and sample standard deviations $5.2$ and $2.4$ in the control and treatment respectively, does this data provide statistically significant evidence of the effectiveness of the medication?
+
+$H_0: \mu_T = \mu_C$ or $\mu_T - \mu_C = 0$
+
+$H_A: \mu_T < \mu_C$ or $\mu_T-\mu_C <0$
+
+
+3. It is thought that middle school age boys and girls spend an equal time on average watching tv. A study is done for $25$ randomly selected children. The study had $16$ boys and $9$ girls. The $16$ boys watched tv for an average of $3.22$ hours per day with a sample standard deviation of $1$. The $9$ girls watched an average of two hours of television per day with a sample standard deviation of $.866$. Does the study suggest a statistically significant difference in the two population means using a significance level of $.05$?
+
+
