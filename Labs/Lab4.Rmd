@@ -1,0 +1,189 @@
+---
+title: "Lab 4-Hypothesis Practice"
+author: Student 1 Name, Student 2 Name
+output:
+  html_document:
+    css: ./style.css
+    toc: no
+    toc_float: no
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+library(openintro)
+library(palmerpenguins)
+library(tidyverse)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+
+### Sample Mean known standard deviation
+
+$$\bar{X} \sim N \left(\mu,\frac{\sigma}{\sqrt{n}} \right)$$
+
+---
+
+### Sample Mean unknown standard deviation
+
+$$SE = \frac{s}{\sqrt{n}}$$
+
+---
+
+### population proportions
+
+$$ \hat{p}  \sim N \left(p,\sqrt{\frac{p\cdot (1-p)}{n} } \right)$$
+
+---
+
+### Difference of population proportions
+
+
+$$ \hat{p_1}- \hat{p_1}  \sim N \left(p_1-p_2,\sqrt{\frac{p_1\cdot (1-p_1)}{n_1} + \frac{p_2\cdot (1-p_2)}{n_2}} \right)$$
+
+---
+
+### Difference of means with known standard deviation
+
+$$ \bar{X_1}- \bar{X_2}  \sim N \left(\mu_1 - \mu_2, \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} \right)$$
+
+### Difference of means with unknown standard deviation
+
+$$SE= \sqrt{\frac{s^2}{n_1} + \frac{s^2}{n_2}} $$
+
+
+---
+
+```{r, eval=FALSE}
+install.packages("BSDA")
+```
+
+Run the code above to install a new package. Now add a code chunk just below this line to load the package using the `library()` function.
+
+```{r}
+
+```
+
+1. Researchers conducted a study to find out if there is a difference in some characteristic in two groups of people. Randomly selected participants were divided into two groups, A and B. In group A, $12 \%$ of the $200$ surveyed had the characteristic, while $11\ %$ of the $400$ participants in group B had the characteristic. Conduct a hypothesis test to see if this data shows a statistically significant difference in the populations or indicate why our methods do not apply. Set $\alpha = 0.05$. 
+
+$H_0:$
+
+$H_A:$
+
+
+```{r}
+# insert code here
+
+```
+
+2. Researchers conducted a study to find out if there is a difference in some characteristic in two groups of people. Randomly selected participants were divided into two groups, A and B. In group A, $12 \%$ of the $200$ surveyed had the characteristic, while $11\ %$ of the $400$ participants in group B had the characteristic. Construct a $95 \%$ confidence interval.
+
+
+```{r}
+# insert code here
+
+```
+
+
+3. Use the code `prop.test(c(successes in group A, successes in group A), c(n_1,n_2), correct = FALSE)` 
+
+```{r}
+# insert code here
+
+```
+
+Note that the results match the previous parts.
+
+---
+
+4. A study is done to determine if Company A retains its workers longer than Company B. Company A randomly samples $35$ workers, and their average time with the company is six years. Company B samples $40$ workers, and their average time with the company is $4.5$ years. Both companies looks at historical records and determine that company A retains workers with a standard deviation of $3.8$ years and company B with a standard deviation of $3.6$ years. At a $10 \%$ significance level, is there a statistically significant difference between the average time workers stay at company A and the average time workers stay at company B? 
+
+$H_0:$
+
+$H_A:$
+
+
+```{r}
+# insert code here
+
+se <- sqrt(3.8^2/35 + 3.6^2/40)
+(1-pnorm(1.5,0,se))*2
+```
+
+5. With the same data as in 4., find a $90 \%$ confidence interval for the difference in population means.
+
+```{r}
+# insert code here
+```
+
+6. Use the code `zsum.test(mean1,sd1,n1,mean2,sd2,n2,conf.level=0.9)`, filling in the sample means, standard deviations, and sample sizes as appropriate.
+
+You can also do a `t.test()` on bigger data sets. Without needing to get all of the sample statistics, R does all of that for you. For example, the following code will filter the Adelie and Gentoo penguins for you:
+
+```{r}
+Adelie <- filter(penguins, species == "Adelie" )
+Gentoo <- filter(penguins, species == "Gentoo" )
+```
+
+Now run
+
+```{r}
+t.test(Adelie$body_mass_g,Gentoo$body_mass_g)
+```
+
+7. If our null hypothesis is that Gentoo and Adelie penguins have the same average body mass, what conclusion should you draw from your hypothesis test?
+
+8. Use the above function to find an $80 \%$ confidence interval for the true difference in the average body mass of the two species of penguins. Interpret your results within the context of the problem.
+
+```{r}
+# insert code here
+```
+
+
+---
+
+9. An inventor has developed a new, energy-efficient engine. He claims that the engine will run continuously for more than $5$ hours ($300$ minutes) on a single gallon of regular gasoline. From his stock of engines, the inventor selects a simple random sample of $50$ engines for testing. The engines run for an average of $305$ minutes. The standard deviation $s$ is $30$ minutes. Set up a hypothesis test and make a conclusion with a $5 \%$ significance level. Use `?tsum.test` to learn more about how to use it and use the function to perform a hypothesis test and write your conclusion based on the code.
+
+$H_0:$
+
+$H_A:$
+
+
+```{r}
+# insert code here
+```
+
+10. Natural cork in wine bottles is subject to deterioration, and as a result wine in such bottles may experience contamination. In a simple random sample of $91$ wine bottles, $16$ of them were found to be spoiled to some extent by cork deterioration. Does this data provide strong evidence for concluding that more than $15 \%$ of all such bottles are contaminated in this way? Use a significance level equal to $0.10$. Use `?prop.test()` to figure out how to use the function to do a hypothesis test using a single proportion and use it to form a concuison.
+
+$H_0:$
+
+$H_A:$
+
+
+```{r}
+# insert code here
+```
+
+---
+
+11. An engineer knows that the hardness score of the concrete they are using is normally distributed. They hypothesize that the mean hardness score of the concrete mixture they are using is higher than $170$. The engineer measured the hardness of $20$ slabs of concrete and calculated the sample mean to be $174.52$ and the sample standard deviation to be $10.31$. With a significance level of $10 \%$, perform a hypothesis test that the true average score is greater than $170$ or explain why our methods do not apply. Use any method to form your conclusion.
+
+$H_0:$
+
+$H_A:$
+
+```{r}
+# insert code here
+```
+
+---
+
+
+
+
+
