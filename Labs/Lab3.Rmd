@@ -111,8 +111,6 @@ $H_A:$
 ```{r}
 # insert code here
 
-se <- sqrt(3.8^2/35 + 3.6^2/40)
-(1-pnorm(1.5,0,se))*2
 ```
 
 5. With the same data as in 4., find a $90 \%$ confidence interval for the difference in population means.
