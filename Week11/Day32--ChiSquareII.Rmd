@@ -1,0 +1,152 @@
+---
+title: "CA 20 : Homogeneity"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+  
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+library(openintro)
+library(BSDA)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+  
+## Today's Agenda
+- Fitting a distribution
+- chi-square independence
+- Chi-square test of homogeneity
+
+---
+
+## Fitting a distribution... to another distribution
+
+- The Chi-Squared statistic can also be used to test how well two distributions fit each other.
+
+- The hypotheses are always:
+
+$H_0$: the distributions are the same 
+
+$H_A$: the distributions are different
+
++ The test progresses the exact same way as a test for independence; the expected values are computed with:
+
+$$ \displaystyle  \frac{ (\text{row total} \cdot \text{column total})}{\text{table total}}$$
+
++ And the degrees of freedom is still 
+$$df = (\# \text{of rows} - 1) \cdot (\# \text{of columns} - 1)$$
+
+## Conditions 
+
++ All of the chi-squared tests require that all of the expected values are at least $5$.
+
+
+#### Example: Do men and women college students have the same distribution of living arrangements? Use a level of significance of $0.05$. Suppose that $250$ randomly selected men college students and $300$ randomly selected women college students were asked about their living arrangements: dormitory, apartment, with parents, other. Do male and female college students have the same distribution of living arrangements?
+
+|  | Dorm | Apartment | Parents | Other |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Men | $72$ | $84$ | $49$ | $45$ |
+| Women | $91$ | $86$ | $88$ | $35$ |
+
+$H_0:$
+
+$H_A:$
+
+
+
+
+1. Ivy League schools receive many applications, but only some can be accepted. At the schools listed in below, two types of applications are accepted: regular and early decision.
+
+| Type Accepted | Brown | Columbia | Cornell |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Regular | $2115$ | $1792$ | $5306$ |
+| Early Decision | $577$ | $627$ | $1228$ | 
+
+At a $.05 \%$ significance level determine if the distributions are different.
+
+```{r}
+
+```
+
+
+2. Employers want to know which days of the week employees are absent in a five-day work week. Most employers would like to believe that employees are absent equally during the week. Suppose a random sample of $60$ managers were asked on which day of the week they had the highest number of employee absences. The results were distributed as:
+
+|  | Monday | Tuesday | Wednesday | Thursday | Friday | Total |  
+|:--:|:--:|:--:|:--:|:--:|
+| number of absences | 15 | 12 | 9 | 9 | 15 | 60 |
+
+Suppose there are $60$ absences in an average week. Test the goodness of fit of this data to a uniform distribution with a significance level of $.05$.
+
+3. Suppose it is known that the distribution of males age $18$ to $24$ in the U.S. population is as follows:
+
+| Marital Status | Percent | 
+|:--:|:--:|
+| never married | $31.3$ |
+| married | $56.1$ | 
+| widowed | $2.5$ |
+|divorced/separated | $10.1$ | 
+
+From a random sample of $400$ mean ages $18$ to $24$, the following data is collected:
+
+| Marital Status | Count | 
+|:--:|:--:|
+| never married | $140$ |
+| married | $238$ | 
+| widowed | $2$ |
+|divorced/separated | $20$ | 
+
+Perform a goodness of fit test with significance level of $.05$.
+
+4. One study indicates that the number of televisions that American families have is distributed (this is the given distribution for the American population):
+
+| Number of Televisions | Percent | 
+|:--:|:--:|
+| $0$ | $10$ |
+| $1$ | $16$ | 
+| $2$ | $55$ |
+| $3$ | $11$ | 
+| $4+$ | $8$ | 
+
+A random sample of 600 families in North Carolina gave the following results:
+
+| Number of Televisions | Count | 
+|:--:|:--:|
+| $0$ | $66$ |
+| $1$ | $119$ | 
+| $2$ | $340$ |
+| $3$ | $60$ | 
+| $4+$ | $15$ |
+
+At the $1 \%$ significance level, does it appear that the distribution of number of televisions in North Carolina is different from the distribution for the American population as a whole?
+
+```{r}
+
+```
+
+5. Suppose that $600$ thirty-year-olds were surveyed to determine whether or not there is a relationship between the highest education completed and salary. Conduct a test of independence. 
+
+| Salary | No HS diploma | HS | College | Masters |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| $< \$30,000$ | $15$ | $25$ | $10$ | $5$ |
+| $30$k$-40$k | $20$ | $40$ | $70$ | $30$ |
+| $40$k$-50$k | $10$ | $20$ | $40$ | $55$ | 
+| $50$k$-60$k | $5$ | $10$ | $20$ | $60$ |
+| $> \$60,000$ | $0$ | $5$ | $10$ | $150$ |
+
+$H_0:$  
+
+$H_A:$
+
+```{r}
+
+```
