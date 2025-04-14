@@ -1,5 +1,5 @@
 ---
-title: "Day32--ChiSquareIII : Homogeneity"
+title: "Day33--ChiSquareIII : Tables"
 output:
   html_document:
     css: ./style.css
@@ -111,9 +111,9 @@ $H_A:$
 For the following section we will use data from: "Learning Statistics with R" by Danielle Navarro:
 
 ```{r}
-load("./parenthood.Rdata")
-load("./pearson_correlations.RData")
-load("./effort.Rdata")
+load("~/MAT104-Spring254/Week12/parenthood.Rdata")
+load("~/MAT104-Spring254/Week12/pearson_correlations.RData")
+load("~/MAT104-Spring254/Week12/effort.Rdata")
 ```
 
 + This data captures how grumpy Danielle is, how much she slept in a day, and how much her baby slept in a day.
