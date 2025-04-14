@@ -1,0 +1,167 @@
+---
+title: "Day32--ChiSquareIII : Homogeneity"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+  
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+library(openintro)
+library(BSDA)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+  
+## Today's Agenda
+- Using Chi-Square table
+
+---
+
+1. Employers want to know which days of the week employees are absent in a five-day work week. Most employers would like to believe that employees are absent equally during the week. Suppose a random sample of $60$ managers were asked on which day of the week they had the highest number of employee absences. The results were distributed as:
+
+|  | Monday | Tuesday | Wednesday | Thursday | Friday | Total |  
+|:--:|:--:|:--:|:--:|:--:|
+| number of absences | 15 | 12 | 9 | 9 | 15 | 60 |
+
+Suppose there are $60$ absences in an average week. Test the goodness of fit of this data to a uniform distribution with a significance level of $.05$.
+
+
+
+2. Suppose it is known that the distribution of males age $18$ to $24$ in the U.S. population is as follows:
+
+| Marital Status | Percent | 
+|:--:|:--:|
+| never married | $31$ |
+| married | $56.5$ | 
+| widowed | $2.5$ |
+|divorced/separated | $10$ | 
+
+From a random sample of $400$ mean ages $18$ to $24$, the following data is collected:
+
+| Marital Status | Count | 
+|:--:|:--:|
+| never married | $140$ |
+| married | $238$ | 
+| widowed | $2$ |
+|divorced/separated | $20$ | 
+
+Perform a goodness of fit test with significance level of $.05$.
+
+```{r}
+
+```
+
+3. One study indicates that the number of televisions that American families have is distributed (this is the given distribution for the American population):
+
+| Number of Televisions | Percent | 
+|:--:|:--:|
+| $0$ | $10$ |
+| $1$ | $16$ | 
+| $2$ | $55$ |
+| $3$ | $11$ | 
+| $4+$ | $8$ | 
+
+A random sample of 600 families in North Carolina gave the following results:
+
+| Number of Televisions | Count | 
+|:--:|:--:|
+| $0$ | $66$ |
+| $1$ | $119$ | 
+| $2$ | $340$ |
+| $3$ | $60$ | 
+| $4+$ | $15$ |
+
+At the $1 \%$ significance level, does it appear that the distribution of number of televisions in North Carolina is different from the distribution for the American population as a whole?
+
+```{r}
+
+```
+
+4. Suppose that $600$ thirty-year-olds were surveyed to determine whether or not there is a relationship between the highest education completed and salary. Conduct a test of independence. 
+
+| Salary | No HS diploma | HS | College | Masters |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| $< \$30,000$ | $15$ | $25$ | $10$ | $5$ |
+| $30$k$-40$k | $20$ | $40$ | $70$ | $30$ |
+| $40$k$-50$k | $10$ | $20$ | $40$ | $55$ | 
+| $50$k$-60$k | $5$ | $10$ | $20$ | $60$ |
+| $> \$60,000$ | $0$ | $5$ | $10$ | $150$ |
+
+$H_0:$  
+
+$H_A:$
+
+```{r}
+
+```
+
+
+## Correlation
+
+For the following section we will use data from: "Learning Statistics with R" by Danielle Navarro:
+
+```{r}
+load("./parenthood.Rdata")
+load("./pearson_correlations.RData")
+load("./effort.Rdata")
+```
+
++ This data captures how grumpy Danielle is, how much she slept in a day, and how much her baby slept in a day.
+
+Consider the following plots:
+
+```{r}
+ggplot(parenthood, aes(x=dan.sleep, y=dan.grump)) + geom_point()
+```
+
+```{r}
+ggplot(parenthood, aes(x=baby.sleep, y=dan.grump)) + geom_point()
+```
+
+
+## Correlation coefficient
+
+The Pearson correlation coefficient $r_{XY}$ is a standardized covariance measure:
+
+$$r_{XY} = \frac{1}{N-1} \sum_{i=1}^{N}
+\frac{X_i-\bar{X}}{s_X}\frac{Y_i-\bar{Y}}{s_Y} $$
+
+where $s_x$ and $s_y$ are the sample standard deviations. 
+
+The R code for the Pearson correlation coefficient is:
+
+### Properties of $r_{XY}$
+
+### Interpreting the Pearson correlation coefficient
+
+Below is data with various Pearson correlation coefficients:
+
+```{r}
+ggplot(outcomes, aes(x=V1,y=V2))+geom_point() + facet_wrap(~pearson)
+```
+
++ Exactly what constitutes as a strong correlation depends on the context.
++ You can, however, use these general guidlines:
+
+| Correlation | Strength | Direction |
+|:--|:--|:--|
+| $-1$ to $-0.9$ | Very Strong | Negative | 
+| $-0.9$ to $-0.7$ | Strong | Negative | 
+| $-0.7$ to $-0.4$ | Moderate | Negative | 
+| $-0.4$ to $-0.2$ | Weak | Negative | 
+| $-0.2$ to $0$ | Negligible | Negative | 
+| $0$ to $0.2$ | Negligible | Positive | 
+| $0.2$ to $0.4$ | Weak | Positive | 
+| $0.4$ to $0.7$ | Moderate | Positive | 
+| $0.7$ to $0.9$ | Strong | Positive | 
+| $0.9$ to $1$ | Very Strong | Positive |
