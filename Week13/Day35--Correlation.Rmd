@@ -1,0 +1,301 @@
+---
+title: "Day 35--Correlation"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+
+## Correlation
+
+For the following section we will use data from: "Learning Statistics with R" by Danielle Navarro:
+
+```{r}
+load("./parenthood.Rdata")
+load("./pearson_correlations.RData")
+load("./effort.Rdata")
+```
+
++ This data captures how grumpy Danielle is, how much she slept in a day, and how much her baby slept in a day.
+
+Consider the following plots:
+
+```{r}
+ggplot(parenthood, aes(x=dan.sleep, y=dan.grump)) + geom_point()
+```
+
+```{r}
+ggplot(parenthood, aes(x=baby.sleep, y=dan.grump)) + geom_point()
+```
+
+
+### Correlation coefficient
+
+The Pearson correlation coefficient $r_{XY}$ is a standardized covariance measure:
+
+$$r_{XY} = \frac{1}{N-1} \sum_{i=1}^{N}
+\frac{X_i-\bar{X}}{s_X}\frac{Y_i-\bar{Y}}{s_Y} $$
+
+where $s_x$ and $s_y$ are the sample standard deviations. 
+
+The R code for the Pearson correlation coefficient is: `cor()`
+
+```{r}
+#correlation for sleep and grump
+```
+
+
+
+### Properties of $r_{XY}$
+
++ always between $-1$ and $1$
++ $-1$ is a perfect negative relationship
++ $1$ is a perfect positive relationship
++ $0$ is no relationship at all
++ Numbers closer to $0$ represent a weaker relationship
++ Numbers closer to $1$ or $-1$ represent a stronger relationship
+
+Since $X$ and $Y$ have a correlation coefficient closer to $-1$ that means Danielle's sleep and her grumpiness level are more strongly associated than the Danielle's sleep and the baby's sleep.
+
+The `cor()` function in R is actually more powerful than how we previously used it. We can find all Pearson coefficients at once by plugging in the data frame:
+
+```{r}
+cor(parenthood)
+```
+
+
+### Interpreting the Pearson correlation coefficient
+
+Below is data with various Pearson correlation coefficients:
+
+```{r}
+ggplot(outcomes, aes(x=V1,y=V2))+geom_point() + facet_wrap(~pearson)
+```
+
++ Exactly what constitutes as a strong correlation depends on the context.
++ You can, however, use these general guidlines:
+
+| Correlation | Strength | Direction |
+|:--|:--|:--|
+| $-1$ to $-0.9$ | Very Strong | Negative | 
+| $-0.9$ to $-0.7$ | Strong | Negative | 
+| $-0.7$ to $-0.4$ | Moderate | Negative | 
+| $-0.4$ to $-0.2$ | Weak | Negative | 
+| $-0.2$ to $0$ | Negligible | Negative | 
+| $0$ to $0.2$ | Negligible | Positive | 
+| $0.2$ to $0.4$ | Weak | Positive | 
+| $0.4$ to $0.7$ | Moderate | Positive | 
+| $0.7$ to $0.9$ | Strong | Positive | 
+| $0.9$ to $1$ | Very Strong | Positive |
+
+### Caution
+
++ Use caution when interpreting a pearson correlation coefficient.
++ The correlation may not tell you what you think it does about the data.
+
+Consider the following data set:
+```{r, eval=FALSE}
+cor(anscombe$x1,anscombe$y1)
+```
+
++ Based on the correlation coefficient we might imagine a scatter plot with a slight positive linear association. 
+
+```{r, eval=FALSE}
+ggplot(anscombe, aes(x=x1,y=y1))+geom_point()
+```
+
+Now let's check
+```{r}
+cor(anscombe$x2,anscombe$y2)
+cor(anscombe$x3,anscombe$y3)
+cor(anscombe$x4,anscombe$y4)
+```
+
++ The same correlation coefficient! We should get a similar graph right?
+
+```{r, eval=FALSE}
+ggplot(anscombe, aes(x=x2,y=y2))+geom_point()
+```
+
+```{r, eval=FALSE}
+ggplot(anscombe, aes(x=x3,y=y3))+geom_point()
+```
+
+```{r,eval=FALSE}
+ggplot(anscombe, aes(x=x4,y=y4))+geom_point()
+```
+
+---
+
++ You should always make a scatter plot before using the pearson correlation coefficient to conclude any thing about the shape of your data.
++ The Pearson correlation coefficient measures how close the data is to fitting on a specific line.
++ It is looking for a **linear** relationship. 
++ The correlation coefficient is not the slope
+
+
+## Linear Regression
+
+```{r}
+ggplot(parenthood, aes(x=dan.sleep,y=dan.grump))+geom_point()
+```
+
+The data looks like there is a linear relationship between `dan.sleep` and `dan.grump`, so let's add a line to our plot that represents this relationship.
+
+### Meaning of the Parameters
+
+To make an equation for a line we use the slope-intercept formula:
+
+$$y=mx+b$$
+where $m$ is the slope of the line and $b$ is the $y$-intercept. 
+
+In statistics, we typically use different letters but the equation is the same:
+$$\hat{Y_i} = b_1 X_i + b_0$$
+where $b_1$ is the slope and $b_0$ is the $y$-intercept. The values $b_1$ and $b_0$ are called coefficients. 
+
+1. Interpret $b_1$, $b_0$, $X_i$, and $\hat{Y}_i$ in the context of the parenthood data. Make a best guess for $b_0$ and $b_1$. 
+
+
+
+Let's add the line we predicted to the graph
+
+```{r}
+
+```
+
+2. Use line to predict grumpiness based on 5 hours of sleep.
+
+```{r}
+
+```
+
++ the X variable is often called the explanatory variable
++ the Y variable is often called the response variable
+
+### Residuals
+
++ We can do better than estimating by eye though. 
++ We should choose the line that minimize the error in our predictions.
+
+The graph below displays the error between our prediction and the true data in red:
+
+```{r, eval=FALSE}
+# Use our slope and intercept guesses to predict the y-values
+
+#predictions <-
+
+# Plot segments joining the actual points and the predicted points
+ggplot(parenthood, aes(x=dan.sleep,y=dan.grump)) +
+  geom_point() + 
+  geom_abline(intercept = 135, slope = -10, color="blue") + 
+  geom_segment(aes(xend = dan.sleep, yend = predictions$Y_hat, color = "residual"))
+```
+
+To lengths of these little red segments are called **residuals**. We can find how big the residuals are by finding the difference between the predicted value and the actual value:
+
+$$\epsilon_i = Y_i - \hat{Y}_i$$
+
+3. Calculate the residual corresponding to the first day, $\epsilon_1$. 
+
+```{r}
+
+```
+
++ the residual is **negative** when our prediction is an overestimate
++ the residual is **positive** when our prediction is an underestimate.
+
+Putting these ideas together, we can see that our real data is equal to our prediction plus the residuals:
+
+$$Y_i = \hat{Y}_i + \epsilon_i = b_1X_i + b_0 + \epsilon_i$$
+
+---
+
+## Minimizing error
+
+
++ One approach for this is to minimize the so called **sum of the squared residuals**:
+
+$$ \sum \epsilon_i^2 = \sum (Y_i - \hat{Y}_i)^2$$
+
+---
+
+### Using R to find the fits
+
+
+## Multiple Regression
+
+
+The model we use for two predictors is:
+$$\hat{Y}_i = b_2 X_{i,2} + b_1 X_{i,1} + b_0$$
+
+where $X_{i,2}$ is the amount of sleep the baby got on day $i$ and $X_{i,1}$ is the amount of sleep Danielle got on day $i$.
+
++ If we had three predictors the equation would be:
+$$\hat{Y}_i = b_3 X_{i,3} + b_2 X_{i,2} + b_1 X_{i,1} + b_0$$
+
+
+To find the best fitting regression line we use `lm()`:
+
+```{r,eval=FALSE}
+scatter3d(dan.grump ~ dan.sleep + baby.sleep, parenthood)
+rglwidget()
+```
+
+4. Find the residual corresponding to the first day using this new model with two predictors.
+
+---
+
+## Class Activity
+
+5. Using the penguins data set, perform a simple linear regression to model body mass using the predictor variable bill length. What values do you get for $\hat{b}_0$ and $\hat{b}_1$? Graph a scatter plot for the data and include your regression model in the plot.
+
+```{r}
+
+```
+
+
+
+$\hat{b}_0 = $
+
+$\hat{b}_1 = $
+
+
+
+6. Find the sum of the square residuals for the model in exercise 1.
+
+
+7. Use `cor()` to find the strength of the correlation between bill length and body mass. 
+
+
+```{r}
+
+```
+
+
+
+8. Use simple linear regression to model the relationship between flipper length and body mass for the penguin data. What values do you get for $\hat{b}_0$ and $\hat{b}_1$? Plot a scatter plot for the data with the line you found.
+
+```{r}
+
+```
+
+
+
+9. Use multiple linear regression to model the body mass using the predictors flipper length and bill length for the penguin data. Assuming $X_1$ is flipper length and $X_2$ is bill length, what values do you get for $\hat{b}_0$,  $\hat{b}_1$, and $\hat{b}_2$? 
+
+```{r}
+
+```
