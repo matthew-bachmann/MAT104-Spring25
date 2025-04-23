@@ -1,0 +1,212 @@
+---
+title: "Day 35--Linear Regression"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+library(car)
+library(rgl)
+library(palmerpenguins)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+
+## Residuals
+
+```{r}
+load("./parenthood.Rdata")
+load("./pearson_correlations.RData")
+load("./effort.Rdata")
+```
+
+### Residuals
+
++ We can do better than estimating by eye though. 
++ We should choose the line that minimize the error in our predictions.
+
+The graph below displays the error between our prediction and the true data in red:
+
+```{r, eval=FALSE}
+# Use our slope and intercept guesses to predict the y-values
+
+predictions <- -12*parenthood$dan.sleep + 144
+
+# Plot segments joining the actual points and the predicted points
+ggplot(parenthood, aes(x=dan.sleep,y=dan.grump)) +
+  geom_point() + 
+  geom_abline(intercept = 144, slope = -12, color="blue") + 
+  geom_segment(aes(xend = dan.sleep, yend = predictions, color = "residual"))
+```
+
+To lengths of these little red segments are called **residuals**. We can find how big the residuals are by finding the difference between the predicted value and the actual value:
+
+$$\epsilon_i = Y_i - \hat{Y}_i$$
+
+1. Calculate the residual corresponding to the first day, $\epsilon_1$. 
+```{r}
+
+```
+
++ the residual is **negative** when our prediction is an overestimate
++ the residual is **positive** when our prediction is an underestimate.
+
+Putting these ideas together, we can see that our real data is equal to our prediction plus the residuals:
+
+$$Y_i = \hat{Y}_i + \epsilon_i = b_1X_i + b_0 + \epsilon_i$$
+
+---
+
+## Minimizing error
+
++ One approach for this is to minimize the so called **sum of the squared residuals**:
+
+$$ \sum \epsilon_i^2 = \sum (Y_i - \hat{Y}_i)^2$$
+
+---
+
+### Using R to find the fits
+
+
+## Multiple Regression
+
+
+The model we use for two predictors is:
+$$\hat{Y}_i = b_2 X_{i,2} + b_1 X_{i,1} + b_0$$
+
+where $X_{i,2}$ is the amount of sleep the baby got on day $i$ and $X_{i,1}$ is the amount of sleep Danielle got on day $i$.
+
++ If we had three predictors the equation would be:
+$$\hat{Y}_i = b_3 X_{i,3} + b_2 X_{i,2} + b_1 X_{i,1} + b_0$$
+
+
+To find the best fitting regression line we use `lm()`:
+
+```{r,eval=FALSE}
+scatter3d(dan.grump ~ dan.sleep + baby.sleep, parenthood)
+rglwidget()
+```
+
+2. Find the residual corresponding to the first day using this new model with two predictors.
+
+---
+
+3. Using the penguins data set, perform a simple linear regression to model body mass using the predictor variable bill length. What values do you get for $\hat{b}_0$ and $\hat{b}_1$? Graph a scatter plot for the data and include your regression model in the plot.
+
+```{r}
+
+```
+
+
+
+$\hat{b}_0 =$
+
+$\hat{b}_1 =$
+
+
+
+4. Find the sum of the square residuals for the model in exercise 1.
+
+
+5. Use `cor()` to find the strength of the correlation between bill length and body mass. 
+
+
+```{r}
+
+```
+
+
+
+6. Use simple linear regression to model the relationship between flipper length and body mass for the penguin data. What values do you get for $\hat{b}_0$ and $\hat{b}_1$? Plot a scatter plot for the data with the line you found.
+
+```{r}
+
+```
+
+7. Use multiple linear regression to model the body mass using the predictors flipper length and bill length for the penguin data. Assuming $X_1$ is flipper length and $X_2$ is bill length, what values do you get for $\hat{b}_0$,  $\hat{b}_1$, and $\hat{b}_2$? 
+
+```{r}
+
+```
+
+```{r}
+# To find the line of best fit we use the lm() function:
+```
+
+
+```{r}
+ggplot(parenthood, aes(x=dan.sleep,y=dan.grump)) +
+  geom_point() 
+```
+
+So, our model is 
+
+
+### Properties of the Linear Regression Model
+
+
+```{r}
+# show that (mean(x),mean(y)) is a point on the model
+
+```
+
+### Connections to the correlation $r_{XY}=R$
+
++ we can estimate the slope with the formula
+
+$$b_1 = \frac{s_y}{s_x}R$$
+
+```{r}
+# compute the slope of the model with this shortcut
+
+```
+
+
+### Using R^2
+
+
+8. Using the penguins data set, perform a simple linear regression to model body mass using the explanatory variable bill length. What values do you get for $\hat{b}_0$ and $\hat{b}_1$? Graph a scatter plot for the data and include your regression model in the plot.
+
+```{r}
+
+```
+
+$\hat{b}_0 =$
+
+$\hat{b}_1 =$
+
+9. Use `cor()` to find $R^2$ and compare this to what the linear model function `lm()` says it should be. 
+
+```{r}
+
+```
+
+10. Use the formula for estimating $b_1$ in the penguin flipper length data and verify that it is the same value given by `lm()`.
+
+```{r}
+
+```
+
+11. Use simple linear regression to model the relationship between flipper length and body mass for the penguin data. What values do you get for $\hat{b}_0$ and $\hat{b}_1$? Plot a scatter plot for the data with the line you found.
+
+```{r}
+
+```
+
+
+12. Use multiple linear regression to model the body mass using the explanatory variables flipper length and bill length for the penguin data. Assuming $X_1$ is flipper length and $X_2$ is bill length, what values do you get for $\hat{b}_0$,  $\hat{b}_1$, and $\hat{b}_2$? 
+
+```{r}
+
+```
