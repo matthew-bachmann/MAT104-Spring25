@@ -1,0 +1,88 @@
+---
+title: "Day 37--Linear Regression II"
+output:
+  html_document:
+    css: ./style.css
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+library(tidyverse)
+library(palmerpenguins)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+---
+
+## Residuals
+
+```{r}
+load("./parenthood.Rdata")
+load("./pearson_correlations.RData")
+load("./effort.Rdata")
+```
+
+### Properties of the Linear Regression Model
+
+
+```{r}
+# show that (mean(x),mean(y)) is a point on the model
+
+```
+
+### Connections to the correlation $r_{XY}=R$
+
++ we can estimate the slope with the formula
+
+$$b_1 = \frac{s_y}{s_x}R$$
+
+```{r}
+# compute the slope of the model with this shortcut
+
+```
+
+
+### Using R^2
+
+
+1. Using the penguins data set, perform a simple linear regression to model body mass using the explanatory variable bill length (using the built in R function `lm()`). What values do you get for $\hat{b}_0$ and $\hat{b}_1$? Graph a scatter plot for the data and include your regression model in the plot.
+
+```{r}
+
+```
+
+$\hat{b}_0 =$
+
+$\hat{b}_1 =$
+
+2. Use `cor()` to find $R^2$ and compare this to what the linear model function `lm()` says it should be. 
+
+```{r}
+
+```
+
+3. Use the formula for estimating $b_1$ in the penguin flipper length data and verify that it is the same value given by `lm()`.
+
+```{r}
+
+```
+
+4. Use simple linear regression to model the relationship between flipper length and body mass for the penguin data. What values do you get for $\hat{b}_0$ and $\hat{b}_1$? Plot a scatter plot for the data with the line you found.
+
+```{r}
+
+```
+
+
+5. Use multiple linear regression to model the body mass using the explanatory variables flipper length and bill length for the penguin data. Assuming $X_1$ is flipper length and $X_2$ is bill length, what values do you get for $\hat{b}_0$,  $\hat{b}_1$, and $\hat{b}_2$? 
+
+```{r}
+
+```
