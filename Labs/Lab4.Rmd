@@ -1,0 +1,131 @@
+---
+title: "Lab 5"
+author: Student 1 Name, Student 2 Name
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    css: ./style.css
+    toc: no
+    toc_float: no
+    theme: cosmo
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+library(openintro)
+library(tidyverse)
+library(palmerpenguins)
+knitr::opts_chunk$set(eval = TRUE, results = TRUE)
+```
+
+In this lab you will explore how to compare means across many groups. We have already learned ways to test for the difference between two means. We will learn about a new tool called **AN**alysis **O**f **VA**riance, or ANOVA for short. Before performing ANOVA we must check three criteria:
+
++ the observations are independent within and across groups
++ the data within each group are nearly normal
++ the variability across the groups is about equal.
+
+1. Run the code below to load the `palmerpenguin` library and save the `penguins` data set locally removing the data points with no flipper length data. We can assume that the penguin observations are independent.
+
+```{r}
+library(palmerpenguins)
+penguins <- filter(penguins, flipper_length_mm != "NA")
+```
+
+### Filter
+
++ above is an example of how to use the `filter()` function. The first argument is the data set that you want to filter from and the second argument is the condition you want to filter by.
++ The `filter()` function is part of a package called `dplyr`. This package is include in the very large package called `tidyverse` that we already loaded in line 19. 
+
+### Hypotheses for ANOVA
+
+Any ANOVA test we run will always have the same hypotheses:
+
+$H_0$: the mean is the same across all groups
+
+$H_A$: at least one mean is different
+
+2. Write appropriate hypotheses (within the context of the problem) for an ANOVA test trying to identify if different species of penguins have different mean flipper lengths.
+
+$H_0:$
+
+$H_A:$
+
+
+3. Make a box plot with $x$-axis `species` and $y$-axis `flipper_length_mm`. Do the data seem approximately normal? Does it look like there is a significant difference between the median flipper lengths of the species?
+
+```{r}
+# insert code here
+```
+
+
+4. Using `filter()` save three new data sets, one for each species of penguin: `Adelie`, `Chinstrap`, and `Gentoo`.
+
+```{r}
+# insert code here
+```
+
+5. Find the mean and variance of flipper length for each group. For the variance across groups to be considered approximately equal we ask that **no variance is more than double another**. Do the variances satisfy this criterion?
+
+```{r}
+# insert code here
+```
+
+6. A first step to perform ANOVA is to find the sum of squares between groups (SSG) of flipper lengths using the following formula:
+$$SSG = \sum_{i=1}^k n_i(\bar{x_i}-\bar{x})^2 $$
+where $k$ is the number of groups (in this case $k=3$ for the three species), $n_i$ is the sample size of each group, $\bar{x_i}$ is the average for that group, and $\bar{x}$ is the average the whole group (all the penguins). Find the SSG for flipper length below:
+
+```{r}
+# insert code here
+```
+
+7. The next step is to find the mean square error (SSE) of flipper lengths using the following formula:
+$$SSE = \sum_{i=1}^k (n_i-1)\cdot s_i^2 $$
+where $n_i$ is the sample size of each group, and $s_i$ is the standard deviation of each group. Find the SSE below:
+
+```{r}
+# insert code here
+```
+
+8. There is an associated degrees of freedom for SSG and SSE. For SSG, the degrees of freedom, $df_G$, is the number of groups minus $1$. For SSE, the degrees of freedom, $df_E$, is the total number of observations minus the number of groups. We can use the degrees of freedom to calculate the mean square group (MSG) and mean square error (MSE) by $MSG = \frac{SSG}{df_G}$ and $MSE = \frac{SSE}{df_E}$. Calculate MSG and MSE for flipper length.
+
+```{r}
+# insert code here
+```
+
+9. Finally, we calculate the $F$-statistic as $F=MSG/MSE$. Calculate the $F$-statistic below and also use the code $1-pf(F,df_G,df_E)$ to calculate the probability of the observed data assuming that there is no difference between the sample means, this is the $p$-value.
+
+```{r}
+# insert code here
+```
+
+Since the $p$-value is very small (it's so small that R says it is zero), we reject the notion that there is no difference between the average flipper length for each species. The data support that there is a statistically significant difference between average flipper length across species.
+
+Luckily, we don't need to go through all of those steps in order to calculate ANOVA in R. The following code will calculate all of the values we calculated above. Run this code and make sure the values above match with the values below.
+
+```{r}
+summary(aov(flipper_length_mm ~ species, data=penguins))
+```
+
+10. Load the data set `mlb_players_18` and filter the data to only contain outfielders (outfielders have position `LF`, `RF`, or `CF`). 
+
+```{r}
+# insert code here
+```
+
+11. Make a box plot of the data with $x$-axis position and $y$-axis `AVG`. Compute the variance of the three groups (LF, RF, CF). Do the data satisfy the criteria to perform ANOVA?
+
+```{r}
+# insert code here
+```
+
+
+
+12. Perform ANOVA and use the $p$-value to determine if there is a statistically significant difference between the mean batting average (AVG) for the three positions using a significance level of $0.10$.
+
+```{r}
+# insert code here
+```
+
